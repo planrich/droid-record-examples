@@ -4,5 +4,5 @@ remove_column {
 }
 
 migrate_data {
-  class_name 'at.pasra.record.sample.NullMigrator'
+  class_name 'com.example.record.sample.NullMigrator'
 }

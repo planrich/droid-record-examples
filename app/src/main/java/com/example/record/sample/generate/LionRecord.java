@@ -20,14 +20,14 @@ package com.example.record.sample.generate;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 import android.database.Cursor;
-import com.example.record.sample.domain.Time;
+import com.example.record.sample.domain.Lion;
 
-public class TimeRecord{
-    private final java.util.Map<Long, Time> primaryKeyCache = new java.util.HashMap<Long, Time>();
+public class LionRecord{
+    private final java.util.Map<Long, Lion> primaryKeyCache = new java.util.HashMap<Long, Lion>();
     public void clearCache(){
         primaryKeyCache.clear();
     }
-    public void save(SQLiteDatabase db, AbstractTime record){
+    public void save(SQLiteDatabase db, AbstractLion record){
         if (record.getId() == null){
             insert(db, record);
         }
@@ -35,24 +35,24 @@ public class TimeRecord{
             update(db, record);
         }
     }
-    public void insert(SQLiteDatabase db, AbstractTime record){
+    public void insert(SQLiteDatabase db, AbstractLion record){
         ContentValues values = new ContentValues(2);
-        values.put("millis", Double.doubleToLongBits(record.getMillis()));
-        values.put("micros", record.getMicros());
-        long id = db.insert("times", null, values);
+        values.put("legs", record.getLegs());
+        values.put("size", Double.doubleToLongBits(record.getSize()));
+        long id = db.insert("lions", null, values);
         record.setId(id);
-        primaryKeyCache.put(id, (Time)record);
+        primaryKeyCache.put(id, (Lion)record);
     }
-    public Time load(SQLiteDatabase db, long id){
-        Time cached = primaryKeyCache.get(id);
+    public Lion load(SQLiteDatabase db, long id){
+        Lion cached = primaryKeyCache.get(id);
         if (cached != null){
             return cached;
         }
-        Cursor c = db.rawQuery("select millis, micros, _id from times where _id = ?;", new String[] { Long.toString(id) });
+        Cursor c = db.rawQuery("select legs, size, _id from lions where _id = ?;", new String[] { Long.toString(id) });
         if (c.moveToFirst()){
-            Time record = new Time();
-            record.setMillis(Double.longBitsToDouble(c.getLong(c.getColumnIndex("millis"))));
-            record.setMicros(c.getLong(c.getColumnIndex("micros")));
+            Lion record = new Lion();
+            record.setLegs(c.getInt(c.getColumnIndex("legs")));
+            record.setSize(Double.longBitsToDouble(c.getLong(c.getColumnIndex("size"))));
             record.setId(c.getLong(c.getColumnIndex("_id")));
             primaryKeyCache.put(id, record);
             return record;
@@ -60,14 +60,14 @@ public class TimeRecord{
         return null;
     }
     public void delete(SQLiteDatabase db, long id){
-        db.execSQL("delete from times where  _id = ?;", new String[] { Long.toString(id) });
+        db.execSQL("delete from lions where  _id = ?;", new String[] { Long.toString(id) });
         primaryKeyCache.remove(id);
     }
-    public void update(SQLiteDatabase db, AbstractTime record){
+    public void update(SQLiteDatabase db, AbstractLion record){
         ContentValues values = new ContentValues(2);
-        values.put("millis", Double.doubleToLongBits(record.getMillis()));
-        values.put("micros", record.getMicros());
+        values.put("legs", record.getLegs());
+        values.put("size", Double.doubleToLongBits(record.getSize()));
         long id = record.getId();
-        db.update("times", values, "_id = ?", new String[] { Long.toString(id) });
+        db.update("lions", values, "_id = ?", new String[] { Long.toString(id) });
     }
 }

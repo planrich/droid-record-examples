@@ -1,6 +1,6 @@
 /* Copyright (c) 2013, Richard Plangger <rich@pasra.at> All rights reserved.
  *
- * Android Record version 0.0.6 generated this file. For more
+ * Android Record version 0.1.4 generated this file. For more
  * information see http://record.pasra.at/
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
@@ -15,10 +15,12 @@
  *
  * This copyright notice must not be modified or deleted.
  */
-package com.example.record.sample.generate;
+package com.example.record.sample.domain;
 
-public class Time extends AbstractTime {
-    public Time(){
+import com.example.record.sample.generate.AbstractGallery;
+
+public class Gallery extends AbstractGallery {
+    public Gallery(){
         super(null);
     }
     

@@ -2,15 +2,15 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 
+import com.example.record.sample.domain.Gallery;
+import com.example.record.sample.domain.Picture;
+import com.example.record.sample.domain.User;
+import com.example.record.sample.domain.UserPicture;
+import com.example.record.sample.generate.LocalSession;
+import com.example.record.sample.generate.RecordMigrator;
+
 import java.util.Date;
 import java.util.List;
-
-import com.example.record.sample.generate.Gallery;
-import com.example.record.sample.generate.LocalSession;
-import com.example.record.sample.generate.Picture;
-import com.example.record.sample.generate.RecordMigrator;
-import com.example.record.sample.generate.User;
-import com.example.record.sample.generate.UserPicture;
 
 /**
  * Created by rich on 10/1/13.
@@ -72,7 +72,7 @@ public class RelationshipTest  extends AndroidTestCase {
     }
 
     public void testHasAndBelongsToHasManyAddOne_MustReturnOne() {
-        mSession.saveUserPicture(UserPicture.of(user1, picture1));
+        mSession.saveUserPicture(UserPicture.of(picture1, user1));
 
         List<Picture> pictures = user1.loadPictures(mSession);
         List<User> users = picture1.loadUsers(mSession);
@@ -92,8 +92,8 @@ public class RelationshipTest  extends AndroidTestCase {
         List<Picture> pictures = user2.loadPictures(mSession);
         assertEquals(0, pictures.size());
 
-        mSession.saveUserPicture(UserPicture.of(user2, picture1));
-        mSession.saveUserPicture(UserPicture.of(user2, picture1));
+        mSession.saveUserPicture(UserPicture.of(picture1, user2));
+        mSession.saveUserPicture(UserPicture.of(picture1, user2));
 
         pictures = user2.loadPictures(mSession);
         assertEquals(2, pictures.size());

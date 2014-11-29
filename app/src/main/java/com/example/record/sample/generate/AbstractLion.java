@@ -18,44 +18,30 @@
 // This file is generated. If you want to save you some time: !!!DO NOT MODIFY!!!
 package com.example.record.sample.generate;
 
-import com.example.record.sample.domain.UserPicture;
-import com.example.record.sample.domain.Picture;
-import com.example.record.sample.domain.User;
+import com.example.record.sample.domain.Lion;
 import at.pasra.record.RecordBuilder;
 
-public class AbstractUserPicture{
-    protected java.lang.Long mUserId;
-    protected java.lang.Long mPictureId;
+public class AbstractLion{
+    protected java.lang.Integer mLegs;
+    protected java.lang.Double mSize;
     protected java.lang.Long mId;
     
-    public AbstractUserPicture(java.lang.Long id){
+    public AbstractLion(java.lang.Long id){
         this.mId = id;
-        this.mUserId = new Long(0L);
-        this.mPictureId = new Long(0L);
+        this.mLegs = new Integer(20);
+        this.mSize = 333.3232;
     }
     
-    public java.lang.Long getUserId() { return mUserId; }
-    public void setUserId(java.lang.Long value) { mUserId = value; }
-    public java.lang.Long getPictureId() { return mPictureId; }
-    public void setPictureId(java.lang.Long value) { mPictureId = value; }
+    public java.lang.Integer getLegs() { return mLegs; }
+    public void setLegs(java.lang.Integer value) { mLegs = value; }
+    public java.lang.Double getSize() { return mSize; }
+    public void setSize(java.lang.Double value) { mSize = value; }
     public java.lang.Long getId() { return mId; }
     public void setId(java.lang.Long value) { mId = value; }
-    public Picture loadPicture(LocalSession session){
-        return session.findPicture(this.getId());
-    }
-    public User loadUser(LocalSession session){
-        return session.findUser(this.getId());
-    }
-    public static UserPicture of(Picture obj0, User obj1){
-        UserPicture obj = new UserPicture();
-        obj.setPictureId(obj0.getId());
-        obj.setUserId(obj1.getId());
-        return obj;
-    }
-    public static UserPicture fromCursor(android.database.Cursor cursor){
-        UserPicture record = new UserPicture();
-        record.setUserId(cursor.getLong(cursor.getColumnIndex("user_id")));
-        record.setPictureId(cursor.getLong(cursor.getColumnIndex("picture_id")));
+    public static Lion fromCursor(android.database.Cursor cursor){
+        Lion record = new Lion();
+        record.setLegs(cursor.getInt(cursor.getColumnIndex("legs")));
+        record.setSize(Double.longBitsToDouble(cursor.getLong(cursor.getColumnIndex("size"))));
         record.setId(cursor.getLong(cursor.getColumnIndex("_id")));
         return record;
     }

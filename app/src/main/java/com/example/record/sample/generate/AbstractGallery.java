@@ -1,6 +1,6 @@
 /* Copyright (c) 2013, Richard Plangger <rich@pasra.at> All rights reserved.
  *
- * Android Record version 0.1.0 generated this file. For more
+ * Android Record version 0.1.4 generated this file. For more
  * information see http://record.pasra.at/
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
@@ -18,7 +18,9 @@
 // This file is generated. If you want to save you some time: !!!DO NOT MODIFY!!!
 package com.example.record.sample.generate;
 
-import at.pasra.record.SQLiteConverter;
+import com.example.record.sample.domain.Gallery;
+import com.example.record.sample.domain.Picture;
+import com.example.record.sample.domain.User;
 import at.pasra.record.RecordBuilder;
 
 public class AbstractGallery{

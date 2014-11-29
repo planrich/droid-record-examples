@@ -20,24 +20,24 @@ package com.example.record.sample.generate;
 
 import at.pasra.record.RecordBuilder;
 import android.database.sqlite.SQLiteDatabase;
-import com.example.record.sample.domain.User;
+import com.example.record.sample.domain.Lion;
 
-public class UserRecordBuilder extends RecordBuilder<User>{
-    public UserRecordBuilder(SQLiteDatabase db){
-        super("users", new String[] { "first_name", "last_name", "_id" }, db);
+public class LionRecordBuilder extends RecordBuilder<Lion>{
+    public LionRecordBuilder(SQLiteDatabase db){
+        super("lions", new String[] { "legs", "size", "_id" }, db);
     }
     @Override
-    public java.util.List<User> all(android.database.Cursor c){
-        java.util.List<User> list = new java.util.ArrayList<User>();
+    public java.util.List<Lion> all(android.database.Cursor c){
+        java.util.List<Lion> list = new java.util.ArrayList<Lion>();
         while (c.moveToNext()){
-            list.add(User.fromCursor(c));
+            list.add(Lion.fromCursor(c));
         }
         return list;
     }
     @Override
-    public User first(android.database.Cursor c){
+    public Lion first(android.database.Cursor c){
         if (c.moveToFirst()){
-            User record = User.fromCursor(c);
+            Lion record = Lion.fromCursor(c);
             c.close();
             return record;
         }

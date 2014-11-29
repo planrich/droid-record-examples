@@ -18,30 +18,11 @@
 // This file is generated. If you want to save you some time: !!!DO NOT MODIFY!!!
 package com.example.record.sample.generate;
 
-import at.pasra.record.RecordBuilder;
-import android.database.sqlite.SQLiteDatabase;
-import com.example.record.sample.domain.User;
+import com.example.record.sample.domain.UserPicture;
 
-public class UserRecordBuilder extends RecordBuilder<User>{
-    public UserRecordBuilder(SQLiteDatabase db){
-        super("users", new String[] { "first_name", "last_name", "_id" }, db);
+public class UserPictureConverter{
+    
+    public static void serialize(UserPicture entity){
     }
-    @Override
-    public java.util.List<User> all(android.database.Cursor c){
-        java.util.List<User> list = new java.util.ArrayList<User>();
-        while (c.moveToNext()){
-            list.add(User.fromCursor(c));
-        }
-        return list;
-    }
-    @Override
-    public User first(android.database.Cursor c){
-        if (c.moveToFirst()){
-            User record = User.fromCursor(c);
-            c.close();
-            return record;
-        }
-        c.close();
-        return null;
-    }
+    
 }

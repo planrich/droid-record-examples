@@ -1,3 +1,5 @@
+package com.example.droid.record;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
-import com.example.record.sample.generate.Gallery;
+import com.example.record.sample.domain.Gallery;
+import com.example.record.sample.domain.Picture;
+import com.example.record.sample.domain.Time;
 import com.example.record.sample.generate.LocalSession;
-import com.example.record.sample.generate.Picture;
 import com.example.record.sample.generate.RecordMigrator;
-import com.example.record.sample.generate.Time;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

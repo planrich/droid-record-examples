@@ -1,6 +1,6 @@
 /* Copyright (c) 2013, Richard Plangger <rich@pasra.at> All rights reserved.
  *
- * Android Record version 0.1.0 generated this file. For more
+ * Android Record version 0.1.4 generated this file. For more
  * information see http://record.pasra.at/
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
@@ -20,6 +20,12 @@ package com.example.record.sample.generate;
 
 import android.database.sqlite.SQLiteDatabase;
 import at.pasra.record.RecordBuilder;
+import com.example.record.sample.domain.Gallery;
+import com.example.record.sample.domain.Picture;
+import com.example.record.sample.domain.User;
+import com.example.record.sample.domain.UserPicture;
+import com.example.record.sample.domain.Lion;
+import com.example.record.sample.domain.Time;
 
 public class LocalSession{
     private SQLiteDatabase mDB;
@@ -27,6 +33,7 @@ public class LocalSession{
     private final PictureRecord picture_record = new PictureRecord();
     private final UserRecord user_record = new UserRecord();
     private final UserPictureRecord user_picture_record = new UserPictureRecord();
+    private final LionRecord lion_record = new LionRecord();
     private final TimeRecord time_record = new TimeRecord();
     public LocalSession(SQLiteDatabase database){
         this.mDB = database;
@@ -115,6 +122,27 @@ public class LocalSession{
     public UserPictureRecordBuilder queryUserPictures(){
         return new UserPictureRecordBuilder(mDB);
     }
+    public void saveLion(Lion obj){
+        if (obj == null){
+            throw new IllegalArgumentException("Tried to save an instance of Lion which was null. Cannot do that!");
+        }
+        lion_record.save(mDB, obj);
+    }
+    public Lion findLion(java.lang.Long id){
+        if (id == null){
+            throw new IllegalArgumentException("why would you want to load a lion record with a null key?");
+        }
+        return lion_record.load(mDB, id);
+    }
+    public void destroyLion(Lion obj){
+        if (obj == null){
+            throw new IllegalArgumentException("why would you want to delete a lion record with a null obj?");
+        }
+        lion_record.delete(mDB, obj.getId());
+    }
+    public LionRecordBuilder queryLions(){
+        return new LionRecordBuilder(mDB);
+    }
     public void saveTime(Time obj){
         if (obj == null){
             throw new IllegalArgumentException("Tried to save an instance of Time which was null. Cannot do that!");
@@ -141,6 +169,7 @@ public class LocalSession{
         picture_record.clearCache();
         user_record.clearCache();
         user_picture_record.clearCache();
+        lion_record.clearCache();
         time_record.clearCache();
     }
     public GalleryRecord getGalleryRecord(){
@@ -154,6 +183,9 @@ public class LocalSession{
     }
     public UserPictureRecord getUserPictureRecord(){
         return user_picture_record;
+    }
+    public LionRecord getLionRecord(){
+        return lion_record;
     }
     public TimeRecord getTimeRecord(){
         return time_record;

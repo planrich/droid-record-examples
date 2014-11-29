@@ -1,0 +1,35 @@
+/* AUTO GENERATED. DO NOT MODIFY
+ * This file has the sole purpose of displaying the current database layout.
+ */
+create_table gallery{
+  name { type 'string', default '""'}
+  _id { type 'long', default 'new Long(0L)'}
+  user_id { type 'long', default 'new Long(0L)'}
+}
+create_table lion{
+  legs { type 'integer', default 'new Integer(20)'}
+  size { type 'double', default '333.3232'}
+  _id { type 'long', default 'new Long(0L)'}
+}
+create_table picture{
+  name { type 'string', default '""'}
+  image { type 'blob', default 'new byte[0]'}
+  date { type 'date', default 'new java.util.Date(0)'}
+  gallery_id { type 'long', default 'new Long(0L)'}
+  _id { type 'long', default 'new Long(0L)'}
+}
+create_table time{
+  millis { type 'double', default '0.0'}
+  micros { type 'long', default 'new Long(0L)'}
+  _id { type 'long', default 'new Long(0L)'}
+}
+create_table user{
+  first_name { type 'string', default '""'}
+  last_name { type 'string', default '""'}
+  _id { type 'long', default 'new Long(0L)'}
+}
+create_table user_picture{
+  user_id { type 'long', default 'new Long(0L)'}
+  picture_id { type 'long', default 'new Long(0L)'}
+  _id { type 'long', default 'new Long(0L)'}
+}

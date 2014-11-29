@@ -1,6 +1,6 @@
 /* Copyright (c) 2013, Richard Plangger <rich@pasra.at> All rights reserved.
  *
- * Android Record version 0.1.0 generated this file. For more
+ * Android Record version 0.1.4 generated this file. For more
  * information see http://record.pasra.at/
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
@@ -21,13 +21,10 @@ package com.example.record.sample.generate;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 import android.content.ContentValues;
-
-import com.example.record.sample.NullMigrator;
-
 import at.pasra.record.Migrator;
 
 public class RecordMigrator implements Migrator{
-    public static final long MIGRATION_LEVEL = 20140226161603L;
+    public static final long MIGRATION_LEVEL = 7L;
     
     private final SQLiteDatabase db;
     public RecordMigrator(SQLiteDatabase db){
@@ -57,21 +54,21 @@ public class RecordMigrator implements Migrator{
     }
     @Override
     public void migrate(long currentVersion, long targetVersion){
-        db.execSQL("insert or replace into android_record_configs (key,value) values ('generator_version','0.1.0')");
-        if (currentVersion < targetVersion && currentVersion < 20130913154915L){
+        db.execSQL("insert or replace into android_record_configs (key,value) values ('generator_version','0.1.4')");
+        if (currentVersion < targetVersion && currentVersion < 1L){
             db.execSQL("create table galleries (name text , _id integer primary key);");
-            currentVersion = 20130913154915L;
+            currentVersion = 1L;
         }
-        if (currentVersion < targetVersion && currentVersion < 20130913165751L){
+        if (currentVersion < targetVersion && currentVersion < 2L){
             db.execSQL("create table pictures (name text , image blob , date integer , gallery_id integer , _id integer primary key);");
-            currentVersion = 20130913165751L;
+            currentVersion = 2L;
         }
-        if (currentVersion < targetVersion && currentVersion < 20130922092812L){
+        if (currentVersion < targetVersion && currentVersion < 3L){
             db.execSQL("create table usrs (first_name text , last_name text , age integer , _id integer primary key);");
             db.execSQL("alter table galleries add column usr_id integer ;");
-            currentVersion = 20130922092812L;
+            currentVersion = 3L;
         }
-        if (currentVersion < targetVersion && currentVersion < 20130922093131L){
+        if (currentVersion < targetVersion && currentVersion < 4L){
             db.execSQL("drop table if exists users;");
             db.execSQL("create table users (first_name text , last_name text , age integer , _id integer primary key);");
             {
@@ -117,9 +114,9 @@ public class RecordMigrator implements Migrator{
                 db.execSQL("commit");
             }
             db.execSQL("drop table galleries_mig_temp_table");
-            currentVersion = 20130922093131L;
+            currentVersion = 4L;
         }
-        if (currentVersion < targetVersion && currentVersion < 20130922093633L){
+        if (currentVersion < targetVersion && currentVersion < 5L){
             db.execSQL("drop table if exists users_mig_temp_table;");
             db.execSQL("create table users_mig_temp_table (first_name text , last_name text , _id integer primary key);");
             {
@@ -149,16 +146,20 @@ public class RecordMigrator implements Migrator{
                 db.execSQL("commit");
             }
             db.execSQL("drop table users_mig_temp_table");
-            new NullMigrator().migrate(db, currentVersion, targetVersion);
-            currentVersion = 20130922093633L;
+            new com.example.record.sample.NullMigrator().migrate(db, currentVersion, targetVersion);
+            currentVersion = 5L;
         }
-        if (currentVersion < targetVersion && currentVersion < 20131001095638L){
+        if (currentVersion < targetVersion && currentVersion < 6L){
             db.execSQL("create table user_pictures (user_id integer , picture_id integer , _id integer primary key);");
-            currentVersion = 20131001095638L;
+            currentVersion = 6L;
         }
-        if (currentVersion < targetVersion && currentVersion < 20140226161603L){
+        if (currentVersion < targetVersion && currentVersion < 7L){
+            db.execSQL("create table lions (legs integer , size long , _id integer primary key);");
+            currentVersion = 7L;
+        }
+        if (currentVersion < targetVersion && currentVersion < 7L){
             db.execSQL("create table times (millis long , micros integer , _id integer primary key);");
-            currentVersion = 20140226161603L;
+            currentVersion = 7L;
         }
 
         db.execSQL("insert or replace into android_record_configs (key,value) values (?,?)", new Object[] { "version", new Long(currentVersion) });

@@ -1,3 +1,5 @@
+package com.example.droid.record;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -5,9 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.test.AndroidTestCase;
 
+import com.example.record.sample.domain.User;
 import com.example.record.sample.generate.LocalSession;
 import com.example.record.sample.generate.RecordMigrator;
-import com.example.record.sample.generate.User;
 
 /**
  * Created by rich on 9/15/13.
